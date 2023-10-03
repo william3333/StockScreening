@@ -40,7 +40,7 @@ def screen_stocks(symbols):
             pe_ratio = info['trailingPE']
             forward_pe = info['forwardPE']
             eps_growth_next_year = info['forwardEpsEstimate'] / info['trailingEps'] - 1
-            peg_ratio = forward_pe / eps_growth_next_year
+            peg_ratio = forward_pe / (eps_growth_next_year*100)
             fcf = info.get('freeCashflow', 0)
             
             if eps_growth_next_year >= min_growth_rate and peg_ratio <= max_peg_ratio and fcf >= min_free_cash_flow * 1e6:
