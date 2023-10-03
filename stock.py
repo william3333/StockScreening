@@ -1,15 +1,24 @@
+from pathlib import Path
+import appdirs as ad
+CACHE_DIR = ".cache"
+# Force appdirs to say that the cache dir is .cache
+ad.user_cache_dir = lambda *args: CACHE_DIR
+# Create the cache dir if it doesn't exist
+Path(CACHE_DIR).mkdir(exist_ok=True)
+
+import yfinance as yf
+
 import streamlit as st
 import pandas as pd
 import requests
-import yfinance as yf
 
 # Streamlit App title
-st.title('Stock Screening App')
+st.title('Stock Screening from S&P 500 index')
 
 # User-adjustable parameters
 min_growth_rate = st.slider('Minimum Annual Earnings Growth Rate', 0.0, 2.0, 0.1)
 max_peg_ratio = st.slider('Maximum PEG Ratio', 0.0, 4.0, 1.0)
-min_free_cash_flow = st.slider('Minimum Free Cash Flow (Million USD)', 0, 10000, 1000)
+min_free_cash_flow = st.slider('Minimum Free Cash Flow (Million USD)', 0, 10000, 100)
 
 # Get a list of stock symbols, can be obtained from Yahoo Finance
 def get_stock_symbols():
