@@ -18,7 +18,7 @@ st.title('Stock Screening from S&P 500 index')
 # User-adjustable parameters
 min_growth_rate = st.slider('Minimum Annual Earnings Growth Rate', 0.0, 2.0, 0.1)
 max_peg_ratio = st.slider('Maximum PEG Ratio', 0.0, 4.0, 1.0)
-min_free_cash_flow = st.slider('Minimum Free Cash Flow (Million USD)', 0, 10000, 100)
+min_free_cash_flow = st.slider('Minimum Free Cash Flow (Million USD)', 0, 1000, 10)
 
 # Get a list of stock symbols, can be obtained from Yahoo Finance
 def get_stock_symbols():
