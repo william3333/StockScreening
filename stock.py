@@ -40,7 +40,7 @@ def screen_stocks(symbols):
             pe_ratio = info['trailingPE']
             eps_growth= info['earningsGrowth']
             peg_ratio = info['trailingPegRatio']
-            fcf_ratio = info['freeCashflow']/info['totalRevenue']
+            fcf_ratio = round(info['freeCashflow']/info['totalRevenue'],2)
             
             if eps_growth >= min_growth_rate and peg_ratio <= max_peg_ratio and fcf_ratio >= min_free_cash_flow_ratio:
                 selected_stocks.append({
