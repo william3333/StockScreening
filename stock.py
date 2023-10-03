@@ -38,12 +38,11 @@ def screen_stocks(symbols):
         try:
             info = stock.info
             pe_ratio = info['trailingPE']
-            forward_pe = info['forwardPE']
-            eps_growth_next_year = info['forwardEpsEstimate'] / info['trailingEps'] - 1
-            peg_ratio = forward_pe / (eps_growth_next_year*100)
-            fcf = info.get('freeCashflow', 0)
+            eps_growth= info['earningsGrowth']
+            peg_ratio = info['trailingPegRatio']
+            fcf = info['freeCashflow']
             
-            if eps_growth_next_year >= min_growth_rate and peg_ratio <= max_peg_ratio and fcf >= min_free_cash_flow * 1e6:
+            if eps_growth >= min_growth_rate and peg_ratio <= max_peg_ratio and fcf >= min_free_cash_flow * 1e6:
                 selected_stocks.append({
                     'Symbol': symbol,
                     'PEG Ratio': peg_ratio,
